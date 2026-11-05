@@ -1,0 +1,69 @@
+2026-10-22 16:02:41,254 | INFO | CLIENT | Клиент запущен
+2026-10-22 16:02:41,255 | INFO | CLIENT | Клиент запущен
+2026-10-22 16:02:41,256 | INFO | CLIENT | Введена команда: GET users
+2026-10-22 16:02:43,416 | ERROR | CLIENT | Ошибка обмена с сервером: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение
+Traceback (most recent call last):
+  File "C:\Users\Polina\Desktop\dz-1\client.py", line 33, in send_command
+    with socket.create_connection(("127.0.0.1", 8080), timeout=5) as client:
+         ~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\Polina\AppData\Local\Python\pythoncore-3.15-64\Lib\socket.py", line 883, in create_connection
+    raise exceptions[0]
+  File "C:\Users\Polina\AppData\Local\Python\pythoncore-3.15-64\Lib\socket.py", line 868, in create_connection
+    sock.connect(sa)
+    ~~~~~~~~~~~~^^^^
+ConnectionRefusedError: [WinError 10061] Подключение не установлено, т.к. конечный компьютер отверг запрос на подключение
+2026-10-22 16:02:43,853 | INFO | CLIENT | Клиент завершил работу
+2026-10-22 16:06:53,292 | INFO | CLIENT | Клиент запущен
+2026-10-22 16:06:53,292 | INFO | CLIENT | Клиент запущен
+2026-10-22 16:06:53,293 | INFO | CLIENT | Введена команда: GET users
+2026-10-22 16:06:53,310 | INFO | CLIENT | Команда отправлена: GET users
+2026-10-22 16:06:53,311 | INFO | CLIENT | Получен ответ сервера: {"status_code": 200, "message": "OK", "data": {"user1": {"name": "Алексей", "game": "Dota 2", "level": 42, "score": 15320, "playtime_hours": 210}, "user2": {"name": "Мария", "game": "Valorant", "level": 30, "score": 9870, "playtime_hours": 95}, "user3": {"name": "Игорь", "game": "CS2", "level": 55, "score": 21000, "playtime_hours": 340}}}
+2026-10-22 16:06:54,312 | INFO | CLIENT | Введена команда: GET users/user1
+2026-10-22 16:06:54,323 | INFO | CLIENT | Команда отправлена: GET users/user1
+2026-10-22 16:06:54,324 | INFO | CLIENT | Получен ответ сервера: {"status_code": 200, "message": "OK", "data": {"name": "Алексей", "game": "Dota 2", "level": 42, "score": 15320, "playtime_hours": 210}}
+2026-10-22 16:06:55,325 | INFO | CLIENT | Введена команда: GET users/user99
+2026-10-22 16:06:55,326 | INFO | CLIENT | Команда отправлена: GET users/user99
+2026-10-22 16:06:55,329 | INFO | CLIENT | Получен ответ сервера: {"status_code": 404, "message": "Not Found", "error": "Пользователь не найден"}
+2026-10-22 16:06:56,330 | INFO | CLIENT | Введена команда: POST users/user1/score:100
+2026-10-22 16:06:56,331 | INFO | CLIENT | Команда отправлена: POST users/user1/score:100
+2026-10-22 16:06:56,332 | INFO | CLIENT | Получен ответ сервера: {"status_code": 200, "message": "OK", "data": {"name": "Алексей", "game": "Dota 2", "level": 42, "score": 15420, "playtime_hours": 210}}
+2026-10-22 16:06:57,333 | INFO | CLIENT | Введена команда: POST users/user1/score100
+2026-10-22 16:06:57,334 | INFO | CLIENT | Команда отправлена: POST users/user1/score100
+2026-10-22 16:06:57,334 | INFO | CLIENT | Получен ответ сервера: {"status_code": 400, "message": "Bad Request", "error": "Неверный формат POST запроса"}
+2026-10-22 16:06:58,336 | INFO | CLIENT | Введена команда: TEST 500
+2026-10-22 16:06:58,336 | INFO | CLIENT | Команда отправлена: TEST 500
+2026-10-22 16:06:58,396 | INFO | CLIENT | Получен ответ сервера: {"status_code": 500, "message": "Internal Server Error", "error": "Внутренняя ошибка сервера"}
+2026-10-22 16:06:59,397 | INFO | CLIENT | Введена команда: TEST RESET
+2026-10-22 16:06:59,398 | INFO | CLIENT | Отправлены неполные данные: GET us
+2026-10-22 16:06:59,398 | WARNING | CLIENT | Клиент принудительно сбросил TCP-соединение
+2026-10-22 16:07:00,399 | INFO | CLIENT | Введена команда: DELETE users/user1
+2026-10-22 16:07:00,400 | INFO | CLIENT | Команда отправлена: DELETE users/user1
+2026-10-22 16:07:00,401 | INFO | CLIENT | Получен ответ сервера: {"status_code": 405, "message": "Method Not Allowed", "error": "Метод не поддерживается"}
+2026-10-22 16:07:00,401 | INFO | CLIENT | Клиент завершил работу
+2026-10-22 16:43:42,698 | INFO | CLIENT | Клиент запущен
+2026-10-22 16:43:42,698 | INFO | CLIENT | Клиент запущен
+2026-10-22 16:43:42,698 | INFO | CLIENT | Введена команда: GET users
+2026-10-22 16:43:42,724 | INFO | CLIENT | Команда отправлена: GET users
+2026-10-22 16:43:42,725 | INFO | CLIENT | Получен ответ сервера: {"status_code": 200, "message": "OK", "data": {"user1": {"name": "Алексей", "game": "Dota 2", "level": 42, "score": 15420, "playtime_hours": 210}, "user2": {"name": "Мария", "game": "Valorant", "level": 30, "score": 9870, "playtime_hours": 95}, "user3": {"name": "Игорь", "game": "CS2", "level": 55, "score": 21000, "playtime_hours": 340}}}
+2026-10-22 16:43:43,735 | INFO | CLIENT | Введена команда: GET users/user1
+2026-10-22 16:43:43,736 | INFO | CLIENT | Команда отправлена: GET users/user1
+2026-10-22 16:43:43,737 | INFO | CLIENT | Получен ответ сервера: {"status_code": 200, "message": "OK", "data": {"name": "Алексей", "game": "Dota 2", "level": 42, "score": 15420, "playtime_hours": 210}}
+2026-10-22 16:43:44,738 | INFO | CLIENT | Введена команда: GET users/user99
+2026-10-22 16:43:44,738 | INFO | CLIENT | Команда отправлена: GET users/user99
+2026-10-22 16:43:44,738 | INFO | CLIENT | Получен ответ сервера: {"status_code": 404, "message": "Not Found", "error": "Пользователь не найден"}
+2026-10-22 16:43:45,739 | INFO | CLIENT | Введена команда: POST users/user1/score:100
+2026-10-22 16:43:45,740 | INFO | CLIENT | Команда отправлена: POST users/user1/score:100
+2026-10-22 16:43:45,740 | INFO | CLIENT | Получен ответ сервера: {"status_code": 200, "message": "OK", "data": {"name": "Алексей", "game": "Dota 2", "level": 42, "score": 15520, "playtime_hours": 210}}
+2026-10-22 16:43:46,741 | INFO | CLIENT | Введена команда: POST users/user1/score100
+2026-10-22 16:43:46,742 | INFO | CLIENT | Команда отправлена: POST users/user1/score100
+2026-10-22 16:43:46,742 | INFO | CLIENT | Получен ответ сервера: {"status_code": 400, "message": "Bad Request", "error": "Неверный формат POST запроса"}
+2026-10-22 16:43:47,743 | INFO | CLIENT | Введена команда: TEST 500
+2026-10-22 16:43:47,762 | INFO | CLIENT | Команда отправлена: TEST 500
+2026-10-22 16:43:47,764 | INFO | CLIENT | Получен ответ сервера: {"status_code": 500, "message": "Internal Server Error", "error": "Внутренняя ошибка сервера"}
+2026-10-22 16:43:48,766 | INFO | CLIENT | Введена команда: TEST RESET
+2026-10-22 16:43:48,766 | INFO | CLIENT | Отправлены неполные данные: GET us
+2026-10-22 16:43:48,766 | WARNING | CLIENT | Клиент принудительно сбросил TCP-соединение
+2026-10-22 16:43:49,767 | INFO | CLIENT | Введена команда: DELETE users/user1
+2026-10-22 16:43:49,767 | INFO | CLIENT | Команда отправлена: DELETE users/user1
+2026-10-22 16:43:49,768 | INFO | CLIENT | Получен ответ сервера: {"status_code": 405, "message": "Method Not Allowed", "error": "Метод не поддерживается"}
+2026-10-22 16:43:49,768 | INFO | CLIENT | Клиент завершил работу

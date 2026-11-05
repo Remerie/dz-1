@@ -1,5 +1,16 @@
 import socket
 import json
+import logging
+from pathlib import Path
+
+logging.basicConfig(
+    filename=Path(__file__).with_name("server.log"),
+    level=logging.INFO,
+    format="%(asctime)s | %(levelname)s | %(name)s | %(message)s",
+    encoding="utf-8"
+)
+
+logger = logging.getLogger("SERVER")
 
 USERS_DATA = {
     "user1": {"name": "Алексей", "game": "Dota 2", "level": 42, "score": 15320, "playtime_hours": 210},
@@ -93,12 +104,13 @@ def process_command(command):
 with socket.socket() as server:
     server.bind(("127.0.0.1", 8080))
     server.listen()
+    logger.info("Сервер запущен")
     print("Сервер запущен")
 
     while True:
         connection, address = server.accept()
 
-        print(f"Клиент {address[0]}:{address[1]} подключился")
+        logger.info("Клиент %s:%s подключился", address[0], address[1])
 
         with connection:
             try:
@@ -107,19 +119,19 @@ with socket.socket() as server:
                     encoding="utf-8"
                 ).read().strip()
 
-                print(f"Клиент {address[0]} отправил команду: {command}")
+                logger.info("Клиент %s отправил команду: %s", address[0], command)
 
                 if command == "TEST 500":
                     raise RuntimeError("Тестовая ошибка сервера")
 
                 result = process_command(command)
 
-            except ConnectionResetError as error:
-                print(f"Клиент оборвал соединение: {error}")
+            except (ConnectionResetError, ConnectionAbortedError) as error:
+                logger.warning("Клиент оборвал соединение: %s", error)
                 continue
 
             except Exception as error:
-                print(f"Ошибка сервера: {error}")
+                logger.exception("Ошибка сервера: %s", error)
                 result = make_response(
                     500,
                     "Internal Server Error",
@@ -129,5 +141,5 @@ with socket.socket() as server:
             response = json.dumps(result, ensure_ascii=False) + "\n"
             try:
                 connection.sendall(response.encode("utf-8"))
-            except (BrokenPipeError, ConnectionResetError) as error:
-                print(f"Не удалось отправить ответ клиенту: {error}")
+            except (BrokenPipeError, ConnectionResetError, ConnectionAbortedError) as error:
+                logger.warning("Не удалось отправить ответ клиенту: %s", error)
